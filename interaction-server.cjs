@@ -409,14 +409,23 @@ const server = http.createServer((req, res) => {
         return;
     }
 
-    // Static file serving
+    // Static file serving — dist/ for frontend, public/ for data assets
+    const distDir = path.join(__dirname, 'dist');
     const publicDir = path.join(__dirname, 'public');
-    let filePath = path.join(publicDir, cleanPath === '/' ? 'index.html' : cleanPath);
+    // Try dist/ first (Vite build output)
+    let filePath = path.join(distDir, cleanPath === '/' ? 'index.html' : cleanPath);
     if (fs.existsSync(filePath) && fs.statSync(filePath).isFile()) {
         serveStatic(res, filePath);
-    } else {
-        serveStatic(res, path.join(publicDir, 'index.html'));
+        return;
     }
+    // Try public/ (data files)
+    let pubPath = path.join(publicDir, cleanPath);
+    if (fs.existsSync(pubPath) && fs.statSync(pubPath).isFile()) {
+        serveStatic(res, pubPath);
+        return;
+    }
+    // SPA fallback — serve index.html from dist/
+    serveStatic(res, path.join(distDir, 'index.html'));
 });
 
 server.listen(PORT, '0.0.0.0', () => {
