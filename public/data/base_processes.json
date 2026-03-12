@@ -1,1 +1,15 @@
-[]
+[
+  {
+    "id": "INC-2026-05441",
+    "name": "Ryan Carter \u2014 Contractor IT Onboarding",
+    "status": "needs-action",
+    "subject": "Ryan Carter, IT Infrastructure Contractor",
+    "request": "System access provisioning \u2014 contractor onboarding",
+    "ticketId": "INC-2026-05441",
+    "priority": "P2 \u2014 High",
+    "contractType": "Fixed Term \u2014 3 Months",
+    "engagementScope": "Cloud Migration \u2014 AWS to Azure",
+    "submittedBy": "David Langley, Head of IT Infrastructure",
+    "assignedTo": "IT Service Desk"
+  }
+]
